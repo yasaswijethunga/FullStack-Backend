@@ -1,0 +1,93 @@
+### Get all movies
+GET http://localhost:3000/movies
+
+### Get one movie
+GET http://localhost:3000/movies/1
+
+### Get a missing movie
+GET http://localhost:3000/movies/999
+
+### Create a valid movie
+POST http://localhost:3000/movies
+Content-Type: application/json
+
+{
+  "title": "Arrival",
+  "year": 2016,
+  "genre": "Sci-Fi"
+}
+
+### Create an invalid movie
+POST http://localhost:3000/movies
+Content-Type: application/json
+
+{
+  "title": "",
+  "year": "not a number"
+}
+
+### Replace a movie
+PUT http://localhost:3000/movies/1
+Content-Type: application/json
+
+{
+  "title": "Inception: Updated Edition",
+  "year": 2010,
+  "genre": "Sci-Fi"
+}
+
+### Invalid incomplete PUT
+PUT http://localhost:3000/movies/1
+Content-Type: application/json
+
+{
+  "title": "The Matrix"
+}
+
+### Partially update a movie
+PATCH http://localhost:3000/movies/1
+Content-Type: application/json
+
+{
+  "year": 2011
+}
+
+### Get updated movie
+GET http://localhost:3000/movies/1
+
+### Filter by genre
+GET http://localhost:3000/movies?genre=Sci-Fi
+
+### Filter by minimum year
+GET http://localhost:3000/movies?minYear=2000
+
+### Filter by genre and minimum year
+GET http://localhost:3000/movies?genre=Sci-Fi&minYear=2000
+
+### Sort by year
+GET http://localhost:3000/movies?sort=year
+
+### Sort by title
+GET http://localhost:3000/movies?sort=title
+
+### Invalid query parameter
+GET http://localhost:3000/movies?minYear=invalid
+
+### Invalid sort value
+GET http://localhost:3000/movies?sort=rating
+
+### Delete a movie
+DELETE http://localhost:3000/movies/1
+
+### Delete the same movie again
+DELETE http://localhost:3000/movies/1
+
+### Unknown route
+GET http://localhost:3000/does-not-exist
+
+### Broken JSON body (triggers the error handler)
+POST http://localhost:3000/movies
+Content-Type: application/json
+
+{
+  "title": "Broken",
